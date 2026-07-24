@@ -1,0 +1,12 @@
+﻿@using Brawndo_Translation
+@{
+    ViewData["Title"] = "Home Page";
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+    Brawndo.Helpers.LanguageHelper.SetCultureFromLanguage(currentLanguage);
+}
+
+<div class="text-center">
+    <p class="text-muted">Current Language: @currentLanguage.ToUpper()</p>
+    <h1 class="display-4">@Resources.HomePageTitle</h1>
+    <p>@Resources.HomePageDescription</p>
+</div>

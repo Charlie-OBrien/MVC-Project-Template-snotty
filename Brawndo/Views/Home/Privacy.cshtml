@@ -1,0 +1,10 @@
+﻿@using Brawndo_Translation
+@{
+    ViewData["Title"] = "Privacy Policy";
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+    Brawndo.Helpers.LanguageHelper.SetCultureFromLanguage(currentLanguage);
+}
+
+<p class="text-muted">Current Language: @currentLanguage.ToUpper()</p>
+<h1>@Resources.PrivacyPageTitle</h1>
+<p>@Resources.PrivacyPageContent</p>
