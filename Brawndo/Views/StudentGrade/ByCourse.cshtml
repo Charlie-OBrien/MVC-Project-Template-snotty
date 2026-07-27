@@ -1,0 +1,19 @@
+@using Brawndo_Translation
+@{
+    ViewData["Title"] = @Resources.EnrollmentsForCourse;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+    var course = ViewData["Course"] as Brawndo_Components.Models.Course;
+}
+
+<h1>@Resources.EnrollmentsForCourse: @course?.Title</h1>
+<div class="mb-3">
+    <a asp-action="Create" asp-controller="StudentGrade" asp-route-language="@currentLanguage" class="btn btn-success">+ @Resources.CreateButton</a>
+    <a asp-action="Index" asp-controller="StudentGrade" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToEnrollments</a>
+    <a asp-action="Index" asp-controller="Home" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToHome</a>
+</div>
+
+<div class="alert alert-info">
+    <strong>@Resources.TableHeaderCredits:</strong> @course?.Credits
+</div>
+
+<p>Course ID: @course?.CourseID</p>

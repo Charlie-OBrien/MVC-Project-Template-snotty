@@ -59,4 +59,250 @@
   <data name="NavPrivacy" xml:space="preserve">
     <value>Confidentialité</value>
   </data>
+  <data name="StudentsPageTitle" xml:space="preserve">
+    <value>Étudiants</value>
+  </data>
+  <data name="InstructorsPageTitle" xml:space="preserve">
+    <value>Instructeurs</value>
+  </data>
+  <data name="CoursesPageTitle" xml:space="preserve">
+    <value>Tous les cours</value>
+  </data>
+  <data name="CoursesByDepartmentPageTitle" xml:space="preserve">
+    <value>Cours par département</value>
+  </data>
+  <data name="DepartmentsPageTitle" xml:space="preserve">
+    <value>Départements</value>
+  </data>
+  <data name="PersonDetailsPageTitle" xml:space="preserve">
+    <value>Détails de la personne</value>
+  </data>
+  <data name="CourseDetailsPageTitle" xml:space="preserve">
+    <value>Détails du cours</value>
+  </data>
+  <data name="DepartmentDetailsPageTitle" xml:space="preserve">
+    <value>Détails du département</value>
+  </data>
+  <data name="BackToStudents" xml:space="preserve">
+    <value>Retour aux étudiants</value>
+  </data>
+  <data name="BackToInstructors" xml:space="preserve">
+    <value>Retour aux instructeurs</value>
+  </data>
+  <data name="BackToCourses" xml:space="preserve">
+    <value>Retour aux cours</value>
+  </data>
+  <data name="BackToDepartments" xml:space="preserve">
+    <value>Retour aux départements</value>
+  </data>
+  <data name="BackToHome" xml:space="preserve">
+    <value>Retour à l'accueil</value>
+  </data>
+  <data name="ViewByDepartment" xml:space="preserve">
+    <value>Afficher par département</value>
+  </data>
+  <data name="ViewAllCourses" xml:space="preserve">
+    <value>Afficher tous les cours</value>
+  </data>
+  <data name="TableHeaderID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="TableHeaderName" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="TableHeaderTitle" xml:space="preserve">
+    <value>Titre</value>
+  </data>
+  <data name="TableHeaderCredits" xml:space="preserve">
+    <value>Crédits</value>
+  </data>
+  <data name="TableHeaderDepartment" xml:space="preserve">
+    <value>Département</value>
+  </data>
+  <data name="TableHeaderEnrollmentDate" xml:space="preserve">
+    <value>Date d'inscription</value>
+  </data>
+  <data name="TableHeaderHireDate" xml:space="preserve">
+    <value>Date d'embauche</value>
+  </data>
+  <data name="TableHeaderActions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="ViewButton" xml:space="preserve">
+    <value>Afficher</value>
+  </data>
+  <data name="NoRecordsFound" xml:space="preserve">
+    <value>Aucun enregistrement trouvé.</value>
+  </data>
+  <data name="PersonNotFound" xml:space="preserve">
+    <value>Personne non trouvée.</value>
+  </data>
+  <data name="NoCoursesFound" xml:space="preserve">
+    <value>Aucun cours trouvé.</value>
+  </data>
+  <data name="NoDepartmentsFound" xml:space="preserve">
+    <value>Aucun département trouvé.</value>
+  </data>
+  <data name="FieldID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="FieldLastName" xml:space="preserve">
+    <value>Nom de famille</value>
+  </data>
+  <data name="FieldFirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="FieldType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="FieldEnrollmentDate" xml:space="preserve">
+    <value>Date d'inscription</value>
+  </data>
+  <data name="FieldHireDate" xml:space="preserve">
+    <value>Date d'embauche</value>
+  </data>
+  <data name="FieldBudget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
+  <data name="FieldStartDate" xml:space="preserve">
+    <value>Date de début</value>
+  </data>
+  <data name="FieldAdministrator" xml:space="preserve">
+    <value>Administrateur</value>
+  </data>
+  <data name="CoursesForDepartment" xml:space="preserve">
+    <value>Cours pour le département</value>
+  </data>
+  <data name="SectionsTitle" xml:space="preserve">
+    <value>Explorer</value>
+  </data>
+  <data name="StudentsSection" xml:space="preserve">
+    <value>Étudiants</value>
+  </data>
+  <data name="StudentsDescription" xml:space="preserve">
+    <value>Afficher tous les étudiants inscrits</value>
+  </data>
+  <data name="InstructorsSection" xml:space="preserve">
+    <value>Instructeurs</value>
+  </data>
+  <data name="InstructorsDescription" xml:space="preserve">
+    <value>Afficher tous les instructeurs</value>
+  </data>
+  <data name="CoursesSection" xml:space="preserve">
+    <value>Cours</value>
+  </data>
+  <data name="CoursesDescription" xml:space="preserve">
+    <value>Afficher tous les cours</value>
+  </data>
+  <data name="DepartmentsSection" xml:space="preserve">
+    <value>Départements</value>
+  </data>
+  <data name="DepartmentsDescription" xml:space="preserve">
+    <value>Afficher tous les départements</value>
+  </data>
+  <data name="CreateCourseTitle" xml:space="preserve">
+    <value>Créer un cours</value>
+  </data>
+  <data name="EditCourseTitle" xml:space="preserve">
+    <value>Modifier le cours</value>
+  </data>
+  <data name="BackToCourseDetails" xml:space="preserve">
+    <value>Retour aux détails du cours</value>
+  </data>
+  <data name="CourseNotFound" xml:space="preserve">
+    <value>Cours non trouvé.</value>
+  </data>
+  <data name="SelectDepartment" xml:space="preserve">
+    <value>Sélectionner un département</value>
+  </data>
+  <data name="CreateButton" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="SaveButton" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="CreateDepartmentTitle" xml:space="preserve">
+    <value>Créer un département</value>
+  </data>
+  <data name="EditDepartmentTitle" xml:space="preserve">
+    <value>Modifier le département</value>
+  </data>
+  <data name="BackToDepartmentDetails" xml:space="preserve">
+    <value>Retour aux détails du département</value>
+  </data>
+  <data name="DepartmentNotFound" xml:space="preserve">
+    <value>Département non trouvé.</value>
+  </data>
+  <data name="EnrollmentsPageTitle" xml:space="preserve">
+    <value>Inscriptions</value>
+  </data>
+  <data name="StudentGradePageTitle" xml:space="preserve">
+    <value>Notes des étudiants</value>
+  </data>
+  <data name="EnrollmentsForStudent" xml:space="preserve">
+    <value>Inscriptions pour l'étudiant</value>
+  </data>
+  <data name="EnrollmentsForCourse" xml:space="preserve">
+    <value>Inscriptions pour le cours</value>
+  </data>
+  <data name="FieldGrade" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="FieldGPA" xml:space="preserve">
+    <value>Moyenne générale</value>
+  </data>
+  <data name="CreateEnrollmentTitle" xml:space="preserve">
+    <value>Créer une inscription</value>
+  </data>
+  <data name="EditEnrollmentTitle" xml:space="preserve">
+    <value>Modifier la note</value>
+  </data>
+  <data name="BackToEnrollments" xml:space="preserve">
+    <value>Retour aux inscriptions</value>
+  </data>
+  <data name="EnrollmentNotFound" xml:space="preserve">
+    <value>Inscription non trouvée.</value>
+  </data>
+  <data name="CourseInstructorsPageTitle" xml:space="preserve">
+    <value>Instructeurs des cours</value>
+  </data>
+  <data name="InstructorsForCourse" xml:space="preserve">
+    <value>Instructeurs pour le cours</value>
+  </data>
+  <data name="CoursesForInstructor" xml:space="preserve">
+    <value>Cours pour l'instructeur</value>
+  </data>
+  <data name="AssignInstructorTitle" xml:space="preserve">
+    <value>Assigner un instructeur au cours</value>
+  </data>
+  <data name="SelectInstructor" xml:space="preserve">
+    <value>Sélectionner un instructeur</value>
+  </data>
+  <data name="OfficeAssignmentsPageTitle" xml:space="preserve">
+    <value>Affectations de bureaux</value>
+  </data>
+  <data name="AssignOfficeTitle" xml:space="preserve">
+    <value>Attribuer un bureau</value>
+  </data>
+  <data name="EditOfficeTitle" xml:space="preserve">
+    <value>Modifier l'affectation du bureau</value>
+  </data>
+  <data name="FieldLocation" xml:space="preserve">
+    <value>Emplacement</value>
+  </data>
+  <data name="BackToOfficeAssignments" xml:space="preserve">
+    <value>Retour aux affectations de bureaux</value>
+  </data>
+  <data name="DeleteButton" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="OfficeAssignmentNotFound" xml:space="preserve">
+    <value>Affectation de bureau non trouvée.</value>
+  </data>
+  <data name="RemoveInstructor" xml:space="preserve">
+    <value>Retirer l'instructeur</value>
+  </data>
+  <data name="EditButton" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
 </root>

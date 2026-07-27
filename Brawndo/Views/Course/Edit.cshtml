@@ -1,0 +1,47 @@
+@using Brawndo_Translation
+@model Brawndo_Components.Models.Course
+@{
+    ViewData["Title"] = $"Edit {Model?.Title}";
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+    var departments = ViewData["Departments"] as List<Brawndo_Components.Models.Department> ?? new List<Brawndo_Components.Models.Department>();
+}
+
+<h1>@Resources.EditCourseTitle</h1>
+<p><a asp-action="Details" asp-controller="Course" asp-route-id="@Model?.CourseID" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToCourseDetails</a></p>
+
+@if (Model != null)
+{
+    <form asp-action="Edit" method="post" class="mt-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="CourseID" />
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">@Resources.TableHeaderTitle</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Credits" class="form-label">@Resources.TableHeaderCredits</label>
+            <input asp-for="Credits" type="number" class="form-control" />
+            <span asp-validation-for="Credits" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DepartmentID" class="form-label">@Resources.TableHeaderDepartment</label>
+            <select asp-for="DepartmentID" class="form-select">
+                @foreach (var dept in departments)
+                {
+                    <option value="@dept.DepartmentID" selected="@(dept.DepartmentID == Model.DepartmentID)">@dept.Name</option>
+                }
+            </select>
+            <span asp-validation-for="DepartmentID" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">@Resources.SaveButton</button>
+    </form>
+}
+else
+{
+    <p>@Resources.CourseNotFound</p>
+}

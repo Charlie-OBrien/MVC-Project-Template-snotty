@@ -1,0 +1,16 @@
+@if (ViewData.ModelState.ErrorCount > 0)
+{
+    <div role="alert" aria-live="polite" aria-atomic="true" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <h4 class="alert-heading">Form Errors</h4>
+        <ul class="mb-0">
+            @foreach (var modelState in ViewData.ModelState.Values)
+            {
+                @foreach (var error in modelState.Errors)
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            }
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}

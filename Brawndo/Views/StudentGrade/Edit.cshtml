@@ -1,0 +1,51 @@
+@using Brawndo_Translation
+@model Brawndo_Components.Models.StudentGrade
+@{
+    ViewData["Title"] = @Resources.EditEnrollmentTitle;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+    var students = ViewData["Students"] as List<Brawndo_Components.Models.Person> ?? new List<Brawndo_Components.Models.Person>();
+    var courses = ViewData["Courses"] as List<Brawndo_Components.Models.Course> ?? new List<Brawndo_Components.Models.Course>();
+}
+
+<h1>@Resources.EditEnrollmentTitle</h1>
+<p><a asp-action="Index" asp-controller="StudentGrade" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToEnrollments</a></p>
+
+@if (Model != null)
+{
+    <form asp-action="Edit" method="post" class="mt-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="EnrollmentID" />
+
+        <div class="mb-3">
+            <label asp-for="StudentID" class="form-label">@Resources.StudentsSection</label>
+            <select asp-for="StudentID" class="form-select">
+                @foreach (var student in students)
+                {
+                    <option value="@student.PersonID" selected="@(student.PersonID == Model.StudentID)">@student.FirstName @student.LastName</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CourseID" class="form-label">@Resources.TableHeaderTitle</label>
+            <select asp-for="CourseID" class="form-select">
+                @foreach (var course in courses)
+                {
+                    <option value="@course.CourseID" selected="@(course.CourseID == Model.CourseID)">@course.Title</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Grade" class="form-label">@Resources.FieldGrade</label>
+            <input asp-for="Grade" type="number" step="0.01" max="4.0" class="form-control" />
+            <span asp-validation-for="Grade" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">@Resources.SaveButton</button>
+    </form>
+}
+else
+{
+    <p>@Resources.EnrollmentNotFound</p>
+}

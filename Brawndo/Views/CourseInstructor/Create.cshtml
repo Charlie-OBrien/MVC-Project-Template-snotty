@@ -1,0 +1,41 @@
+@using Brawndo_Translation
+@model Brawndo_Components.Models.CourseInstructor
+@{
+    ViewData["Title"] = @Resources.AssignInstructorTitle;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+    var instructors = ViewData["Instructors"] as List<Brawndo_Components.Models.Person> ?? new List<Brawndo_Components.Models.Person>();
+    var courses = ViewData["Courses"] as List<Brawndo_Components.Models.Course> ?? new List<Brawndo_Components.Models.Course>();
+}
+
+<h1>@Resources.AssignInstructorTitle</h1>
+<p><a asp-action="Index" asp-controller="CourseInstructor" asp-route-language="@currentLanguage" class="btn btn-secondary">Back to Assignments</a></p>
+
+<form asp-action="Create" method="post" class="mt-3">
+    @await Html.PartialAsync("_FormErrors")
+
+    <div class="mb-3">
+        <label asp-for="PersonID" class="form-label">@Resources.SelectInstructor <span aria-label="required">*</span></label>
+        <select asp-for="PersonID" class="form-select" required aria-required="true" aria-describedby="PersonID-error">
+            <option value="">@Resources.SelectInstructor</option>
+            @foreach (var instr in instructors)
+            {
+                <option value="@instr.PersonID">@instr.FirstName @instr.LastName</option>
+            }
+        </select>
+        <span id="PersonID-error" asp-validation-for="PersonID" class="text-danger d-block mt-1"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CourseID" class="form-label">@Resources.TableHeaderTitle <span aria-label="required">*</span></label>
+        <select asp-for="CourseID" class="form-select" required aria-required="true" aria-describedby="CourseID-error">
+            <option value="">@Resources.SelectDepartment</option>
+            @foreach (var course in courses)
+            {
+                <option value="@course.CourseID">@course.Title</option>
+            }
+        </select>
+        <span id="CourseID-error" asp-validation-for="CourseID" class="text-danger d-block mt-1"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">@Resources.CreateButton</button>
+</form>

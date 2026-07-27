@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -9,6 +9,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Brawndo_Components\Brawndo_Components.csproj" />
     <ProjectReference Include="..\Brawndo_Translation\Brawndo_Translation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Sql_stuff\" />
   </ItemGroup>
 
 </Project>

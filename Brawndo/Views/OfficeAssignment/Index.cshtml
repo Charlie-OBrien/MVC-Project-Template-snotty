@@ -1,0 +1,44 @@
+@using Brawndo_Translation
+@model List<Brawndo_Components.Models.Person>
+@{
+    ViewData["Title"] = @Resources.OfficeAssignmentsPageTitle;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+}
+
+<h1>@Resources.OfficeAssignmentsPageTitle</h1>
+<div class="mb-3">
+    <a asp-action="Create" asp-controller="OfficeAssignment" asp-route-language="@currentLanguage" class="btn btn-success" aria-label="Assign office">+ @Resources.CreateButton</a>
+    <a asp-action="Index" asp-controller="Home" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToHome</a>
+</div>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>No instructors found.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped" role="grid" aria-label="List of instructors">
+            <caption class="visually-hidden">List of instructors for office assignment</caption>
+            <thead>
+                <tr role="row">
+                    <th role="columnheader">@Resources.FieldID</th>
+                    <th role="columnheader">@Resources.TableHeaderName</th>
+                    <th role="columnheader">@Resources.TableHeaderActions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var instructor in Model)
+                {
+                    <tr role="row">
+                        <td role="gridcell">@instructor.PersonID</td>
+                        <td role="gridcell">@instructor.FirstName @instructor.LastName</td>
+                        <td role="gridcell">
+                            <a asp-action="Details" asp-controller="OfficeAssignment" asp-route-instructorId="@instructor.PersonID" asp-route-language="@currentLanguage" class="btn btn-info" aria-label="View office assignment for @instructor.FirstName @instructor.LastName">@Resources.ViewButton</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

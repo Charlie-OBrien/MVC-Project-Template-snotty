@@ -1,0 +1,56 @@
+@using Brawndo_Translation
+@{
+    ViewData["Title"] = @Resources.InstructorsForCourse;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+    var course = ViewData["Course"] as Brawndo_Components.Models.Course;
+}
+
+<h1>@Resources.InstructorsForCourse: @course?.Title</h1>
+<div class="mb-3">
+    <a asp-action="Index" asp-controller="CourseInstructor" asp-route-language="@currentLanguage" class="btn btn-secondary">Back to Assignments</a>
+    <a asp-action="Index" asp-controller="Home" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToHome</a>
+</div>
+
+@if (course != null)
+{
+    <div class="alert alert-info">
+        <p><strong>Course ID:</strong> @course.CourseID</p>
+        <p><strong>@Resources.TableHeaderCredits:</strong> @course.Credits</p>
+    </div>
+
+    @if (ViewData["Instructors"] is List<Brawndo_Components.Models.Person> instructors && instructors.Count > 0)
+    {
+        <h3>@Resources.InstructorsForCourse</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>@Resources.FieldFirstName</th>
+                        <th>@Resources.FieldLastName</th>
+                        <th>@Resources.TableHeaderActions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var instructor in instructors)
+                    {
+                        <tr>
+                            <td>@instructor.FirstName</td>
+                            <td>@instructor.LastName</td>
+                            <td>
+                                <form method="post" asp-action="Delete" class="d-inline">
+                                    <input type="hidden" name="courseId" value="@course.CourseID" />
+                                    <input type="hidden" name="personId" value="@instructor.PersonID" />
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Remove this instructor?')">@Resources.RemoveInstructor</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <p>@Resources.NoRecordsFound</p>
+    }
+}

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="~/Brawndo.styles.css" asp-append-version="true" />
 </head>
 <body>
+    <a href="#main-content" class="btn btn-primary position-absolute" style="top: -40px; left: 0; z-index: 100;">Skip to main content</a>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -55,7 +56,7 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main id="main-content" role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>

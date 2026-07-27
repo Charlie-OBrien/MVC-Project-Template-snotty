@@ -1,0 +1,47 @@
+@using Brawndo_Translation
+@model List<Brawndo_Components.Models.Course>
+@{
+    ViewData["Title"] = Resources.CoursesPageTitle;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+}
+
+<h1>@Resources.CoursesPageTitle</h1>
+<div class="mb-3">
+    <a asp-action="Create" asp-controller="Course" asp-route-language="@currentLanguage" class="btn btn-success" aria-label="Create new course">+ @Resources.CreateButton</a>
+    <a asp-action="Index" asp-controller="Department" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.ViewByDepartment</a>
+    <a asp-action="Index" asp-controller="Home" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToHome</a>
+</div>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>@Resources.NoCoursesFound</p>
+}
+else
+{
+    <table class="table table-striped" role="grid" aria-label="List of courses">
+        <caption class="visually-hidden">List of all courses with ID, title, credits, department, and actions</caption>
+        <thead>
+            <tr role="row">
+                <th role="columnheader">@Resources.TableHeaderID</th>
+                <th role="columnheader">@Resources.TableHeaderTitle</th>
+                <th role="columnheader">@Resources.TableHeaderCredits</th>
+                <th role="columnheader">@Resources.TableHeaderDepartment</th>
+                <th role="columnheader">@Resources.TableHeaderActions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr role="row">
+                    <td role="gridcell">@course.CourseID</td>
+                    <td role="gridcell">@course.Title</td>
+                    <td role="gridcell">@course.Credits</td>
+                    <td role="gridcell">@course.DepartmentID</td>
+                    <td role="gridcell">
+                        <a asp-action="Details" asp-controller="Course" asp-route-id="@course.CourseID" asp-route-language="@currentLanguage" class="btn btn-info" aria-label="View details for @course.Title">@Resources.ViewButton</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

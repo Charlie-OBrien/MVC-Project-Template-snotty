@@ -1,3 +1,6 @@
+using Brawndo_Components.Extensions;
+using Microsoft.AspNetCore.Localization;
+
 namespace Brawndo
 {
     public class Program
@@ -8,6 +11,10 @@ namespace Brawndo
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddLocalization();
+
+            // Registers the School connection, repositories, and services in one call.
+            builder.Services.AddBrawndoComponents(builder.Configuration);
 
             var app = builder.Build();
 
@@ -21,6 +28,18 @@ namespace Brawndo
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // Configure localization
+            var supportedCultures = new[] { "en", "fr-CA" };
+            var localizationOptions = new RequestLocalizationOptions()
+                .SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+
+            localizationOptions.RequestCultureProviders.Clear();
+            localizationOptions.RequestCultureProviders.Add(new CustomRouteDataRequestCultureProvider());
+
+            app.UseRequestLocalization(localizationOptions);
 
             app.UseRouting();
 
@@ -43,6 +62,27 @@ namespace Brawndo
             });
 
             app.Run();
+        }
+    }
+
+    public class CustomRouteDataRequestCultureProvider : IRequestCultureProvider
+    {
+        public Task<ProviderCultureResult?> DetermineProviderCultureResult(HttpContext httpContext)
+        {
+            var path = httpContext?.Request.Path.Value ?? "";
+            var segments = path.Split('/', StringSplitOptions.RemoveEmptyEntries);
+
+            if (segments.Length > 0)
+            {
+                var language = segments[0];
+                if (language == "en" || language == "fr")
+                {
+                    var culture = language == "fr" ? "fr-CA" : "en";
+                    return Task.FromResult<ProviderCultureResult?>(new ProviderCultureResult(culture, culture));
+                }
+            }
+
+            return Task.FromResult<ProviderCultureResult?>(null);
         }
     }
 }

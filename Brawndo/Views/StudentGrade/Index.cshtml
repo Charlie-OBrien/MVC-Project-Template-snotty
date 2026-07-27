@@ -1,0 +1,49 @@
+@using Brawndo_Translation
+@model List<Brawndo_Components.Models.Course>
+@{
+    ViewData["Title"] = @Resources.EnrollmentsPageTitle;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+}
+
+<h1>@Resources.EnrollmentsPageTitle</h1>
+<div class="mb-3">
+    <a asp-action="Create" asp-controller="StudentGrade" asp-route-language="@currentLanguage" class="btn btn-success" aria-label="Create new enrollment">+ @Resources.CreateButton</a>
+    <a asp-action="Index" asp-controller="Home" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToHome</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Resources.TableHeaderTitle</th>
+                <th>@Resources.TableHeaderCredits</th>
+                <th>@Resources.TableHeaderActions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                @foreach (var course in Model)
+                {
+                    <tr>
+                        <td>@course.Title</td>
+                        <td>@course.Credits</td>
+                        <td>
+                            <a asp-action="ByCourse" asp-controller="StudentGrade" asp-route-courseId="@course.CourseID" asp-route-language="@currentLanguage" class="btn btn-sm btn-info">@Resources.ViewButton</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3">@Resources.NoCoursesFound</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<p>
+    <a asp-action="Create" asp-controller="StudentGrade" asp-route-language="@currentLanguage" class="btn btn-primary">@Resources.CreateButton</a>
+</p>

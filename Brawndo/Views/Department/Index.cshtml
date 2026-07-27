@@ -1,0 +1,44 @@
+@using Brawndo_Translation
+@model List<Brawndo_Components.Models.Department>
+@{
+    ViewData["Title"] = Resources.DepartmentsPageTitle;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+}
+
+<h1>@Resources.DepartmentsPageTitle</h1>
+<div class="mb-3">
+    <a asp-action="Create" asp-controller="Department" asp-route-language="@currentLanguage" class="btn btn-success" aria-label="Create new department">+ @Resources.CreateButton</a>
+    <a asp-action="Index" asp-controller="Home" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToHome</a>
+</div>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>@Resources.NoDepartmentsFound</p>
+}
+else
+{
+    <table class="table table-striped" role="grid" aria-label="List of departments">
+        <caption class="visually-hidden">List of all departments with ID, name, budget, and actions</caption>
+        <thead>
+            <tr role="row">
+                <th role="columnheader">@Resources.TableHeaderID</th>
+                <th role="columnheader">@Resources.TableHeaderTitle</th>
+                <th role="columnheader">@Resources.FieldBudget</th>
+                <th role="columnheader">@Resources.TableHeaderActions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dept in Model)
+            {
+                <tr role="row">
+                    <td role="gridcell">@dept.DepartmentID</td>
+                    <td role="gridcell">@dept.Name</td>
+                    <td role="gridcell">@dept.Budget.ToString("C")</td>
+                    <td role="gridcell">
+                        <a asp-action="Details" asp-controller="Department" asp-route-id="@dept.DepartmentID" asp-route-language="@currentLanguage" class="btn btn-info" aria-label="View details for @dept.Name">@Resources.ViewButton</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

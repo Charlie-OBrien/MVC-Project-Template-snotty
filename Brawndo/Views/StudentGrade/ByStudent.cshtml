@@ -1,0 +1,53 @@
+@using Brawndo_Translation
+@model List<Brawndo_Components.Models.StudentGrade>
+@{
+    ViewData["Title"] = @Resources.EnrollmentsForStudent;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+    var student = ViewData["Student"] as Brawndo_Components.Models.Person;
+    var gpa = ViewData["GPA"] as decimal?;
+}
+
+<h1>@Resources.EnrollmentsForStudent: @student?.FirstName @student?.LastName</h1>
+<p><a asp-action="Index" asp-controller="StudentGrade" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToEnrollments</a></p>
+
+@if (gpa.HasValue)
+{
+    <div class="alert alert-info">
+        <strong>@Resources.FieldGPA:</strong> @gpa.Value.ToString("F2")
+    </div>
+}
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Resources.FieldID</th>
+                <th>@Resources.TableHeaderTitle</th>
+                <th>@Resources.FieldGrade</th>
+                <th>@Resources.TableHeaderActions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Count > 0)
+            {
+                @foreach (var grade in Model)
+                {
+                    <tr>
+                        <td>@grade.EnrollmentID</td>
+                        <td>@grade.CourseID</td>
+                        <td>@(grade.Grade?.ToString("F2") ?? "Not Graded")</td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="StudentGrade" asp-route-enrollmentId="@grade.EnrollmentID" asp-route-language="@currentLanguage" class="btn btn-sm btn-warning">@Resources.EditButton</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3">@Resources.NoRecordsFound</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

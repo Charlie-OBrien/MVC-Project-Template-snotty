@@ -1,0 +1,21 @@
+@using Brawndo_Translation
+@{
+    ViewData["Title"] = @Resources.OfficeAssignmentsPageTitle;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+    var instructor = Model as Brawndo_Components.Models.Person;
+}
+
+<h1>@Resources.OfficeAssignmentsPageTitle: @instructor?.FirstName @instructor?.LastName</h1>
+<div class="mb-3">
+    <a asp-action="Edit" asp-controller="OfficeAssignment" asp-route-instructorId="@instructor?.PersonID" asp-route-language="@currentLanguage" class="btn btn-warning">@Resources.EditButton</a>
+    <a asp-action="Index" asp-controller="OfficeAssignment" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToOfficeAssignments</a>
+    <a asp-action="Index" asp-controller="Home" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToHome</a>
+</div>
+
+@if (instructor != null)
+{
+    <div class="alert alert-info">
+        <p><strong>Instructor ID:</strong> @instructor.PersonID</p>
+        <p><strong>@Resources.TableHeaderName:</strong> @instructor.FirstName @instructor.LastName</p>
+    </div>
+}

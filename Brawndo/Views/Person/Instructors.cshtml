@@ -1,0 +1,40 @@
+@using Brawndo_Translation
+@model List<Brawndo_Components.Models.Person>
+@{
+    ViewData["Title"] = Resources.InstructorsPageTitle;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+}
+
+<h1>@Resources.InstructorsPageTitle</h1>
+<p><a asp-action="Index" asp-controller="Home" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToHome</a></p>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>@Resources.NoRecordsFound</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Resources.TableHeaderID</th>
+                <th>@Resources.TableHeaderName</th>
+                <th>@Resources.TableHeaderHireDate</th>
+                <th>@Resources.TableHeaderActions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var instructor in Model)
+            {
+                <tr>
+                    <td>@instructor.PersonID</td>
+                    <td>@instructor.FirstName @instructor.LastName</td>
+                    <td>@instructor.HireDate?.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Person" asp-route-id="@instructor.PersonID" asp-route-language="@currentLanguage" class="btn btn-sm btn-info">@Resources.ViewButton</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,45 @@
+@using Brawndo_Translation
+@model Brawndo_Components.Models.Person
+@{
+    ViewData["Title"] = $"{Model?.FirstName} {Model?.LastName}";
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+}
+
+<h1>@Model?.FirstName @Model?.LastName</h1>
+<div class="mb-3">
+    <a asp-action="Edit" asp-controller="Person" asp-route-id="@Model?.PersonID" asp-route-language="@currentLanguage" class="btn btn-warning">@Resources.EditButton</a>
+    <a asp-action="Students" asp-controller="Person" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToStudents</a>
+    <a asp-action="Index" asp-controller="Home" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToHome</a>
+</div>
+
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="row">
+                <dt>@Resources.FieldID</dt>
+                <dd>@Model.PersonID</dd>
+                <dt>@Resources.FieldLastName</dt>
+                <dd>@Model.LastName</dd>
+                <dt>@Resources.FieldFirstName</dt>
+                <dd>@Model.FirstName</dd>
+                <dt>@Resources.FieldType</dt>
+                <dd>@Model.Discriminator</dd>
+                @if (Model.EnrollmentDate.HasValue)
+                {
+                    <dt>@Resources.FieldEnrollmentDate</dt>
+                    <dd>@Model.EnrollmentDate?.ToString("yyyy-MM-dd")</dd>
+                }
+                @if (Model.HireDate.HasValue)
+                {
+                    <dt>@Resources.FieldHireDate</dt>
+                    <dd>@Model.HireDate?.ToString("yyyy-MM-dd")</dd>
+                }
+            </dl>
+        </div>
+    </div>
+}
+else
+{
+    <p>@Resources.PersonNotFound</p>
+}

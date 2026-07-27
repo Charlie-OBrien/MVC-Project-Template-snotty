@@ -2,11 +2,92 @@
 @{
     ViewData["Title"] = "Home Page";
     var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
-    Brawndo.Helpers.LanguageHelper.SetCultureFromLanguage(currentLanguage);
 }
 
-<div class="text-center">
+<div class="text-center mb-5">
     <p class="text-muted">Current Language: @currentLanguage.ToUpper()</p>
     <h1 class="display-4">@Resources.HomePageTitle</h1>
-    <p>@Resources.HomePageDescription</p>
+    <p class="lead">@Resources.HomePageDescription</p>
+</div>
+
+<div class="container">
+    <h2 class="mb-4">@Resources.SectionsTitle</h2>
+
+    <!-- People Management -->
+    <h3 class="mt-5 mb-4">People Management</h3>
+    <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@Resources.StudentsSection</h5>
+                    <p class="card-text">@Resources.StudentsDescription</p>
+                    <a asp-action="Students" asp-controller="Person" asp-route-language="@currentLanguage" class="btn btn-primary" aria-label="View all students">@Resources.ViewButton</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@Resources.InstructorsSection</h5>
+                    <p class="card-text">@Resources.InstructorsDescription</p>
+                    <a asp-action="Instructors" asp-controller="Person" asp-route-language="@currentLanguage" class="btn btn-primary" aria-label="View all instructors">@Resources.ViewButton</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@Resources.OfficeAssignmentsPageTitle</h5>
+                    <p class="card-text">Manage instructor office locations and assignments</p>
+                    <a asp-action="Index" asp-controller="OfficeAssignment" asp-route-language="@currentLanguage" class="btn btn-primary" aria-label="View office assignments">@Resources.ViewButton</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Academic Management -->
+    <h3 class="mt-5 mb-4">Academic Management</h3>
+    <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@Resources.CoursesSection</h5>
+                    <p class="card-text">@Resources.CoursesDescription</p>
+                    <a asp-action="Index" asp-controller="Course" asp-route-language="@currentLanguage" class="btn btn-primary" aria-label="View all courses">@Resources.ViewButton</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@Resources.DepartmentsSection</h5>
+                    <p class="card-text">@Resources.DepartmentsDescription</p>
+                    <a asp-action="Index" asp-controller="Department" asp-route-language="@currentLanguage" class="btn btn-primary" aria-label="View all departments">@Resources.ViewButton</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@Resources.CourseInstructorsPageTitle</h5>
+                    <p class="card-text">Manage course and instructor assignments</p>
+                    <a asp-action="Index" asp-controller="CourseInstructor" asp-route-language="@currentLanguage" class="btn btn-primary" aria-label="View course instructors">@Resources.ViewButton</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enrollment Management -->
+    <h3 class="mt-5 mb-4">Enrollment Management</h3>
+    <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">@Resources.EnrollmentsPageTitle</h5>
+                    <p class="card-text">Manage student enrollments and grades</p>
+                    <a asp-action="Index" asp-controller="StudentGrade" asp-route-language="@currentLanguage" class="btn btn-primary" aria-label="View enrollments">@Resources.ViewButton</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

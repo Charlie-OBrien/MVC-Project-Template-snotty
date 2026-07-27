@@ -1,0 +1,42 @@
+@using Brawndo_Translation
+@model List<Brawndo_Components.Models.Course>
+@{
+    ViewData["Title"] = Resources.CoursesByDepartmentPageTitle;
+    var currentLanguage = ViewContext.RouteData.Values["language"]?.ToString() ?? "en";
+    var departmentId = ViewContext.RouteData.Values["departmentId"]?.ToString() ?? "";
+}
+
+<h1>@Resources.CoursesByDepartmentPageTitle @departmentId</h1>
+<p><a asp-action="Index" asp-controller="Course" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.ViewAllCourses</a></p>
+<p><a asp-action="Index" asp-controller="Home" asp-route-language="@currentLanguage" class="btn btn-secondary">@Resources.BackToHome</a></p>
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>@Resources.NoCoursesFound</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Resources.TableHeaderID</th>
+                <th>@Resources.TableHeaderTitle</th>
+                <th>@Resources.TableHeaderCredits</th>
+                <th>@Resources.TableHeaderActions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Model)
+            {
+                <tr>
+                    <td>@course.CourseID</td>
+                    <td>@course.Title</td>
+                    <td>@course.Credits</td>
+                    <td>
+                        <a asp-action="Details" asp-controller="Course" asp-route-id="@course.CourseID" asp-route-language="@currentLanguage" class="btn btn-sm btn-info">@Resources.ViewButton</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
